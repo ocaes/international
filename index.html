@@ -144,15 +144,15 @@
     <div class="content" id="contact">
         <h2>Contact Us</h2>
         <p>For inquiries, please contact us at: <a href="mailto:hydromafant@gmail.com">hydromafant@gmail.com</a></p>
-      <form action="mailto:hydromafant@gmail.com" method="post" enctype="text/plain">
-        <label for="name">Your Name:</label>
+        <form action="send_email.php" method="post">
+        <label for="name">Name:</label>
         <input type="text" id="name" name="name" required><br><br>
-        <label for="email">Your Email:</label>
-        <input type="email" id="email" name="email" required><br><br>
-        <label for="message">Message:</label>
-        <textarea id="message" name="message" rows="5" required></textarea><br><br>
-        <input type="submit" value="Send Enquiry">
-      </form>
+        <label for="contact">Contact:</label>
+        <input type="text" id="contact" name="contact" required><br><br>
+        <label for="message">Message:</label><br>
+        <textarea id="message" name="message" rows="4" cols="50" required></textarea><br><br>
+        <input type="submit" value="Submit">
+        </form> 
     </div>
 
     <div class="content" id="links">
