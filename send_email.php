@@ -55,11 +55,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <body>
             <h2>Dear $name,</h2>
             <p>Thank you for reaching out. We have received your message and will get back to you shortly.</p>
-            <p>Best regards,<br>Your Company</p>
+            <p>Best regards,<br>OCAES</p>
         </body>
         </html>";
-        $client_headers = "From: your-email@yourdomain.com\r\n"; // Replace with your email address
-        $client_headers .= "Reply-To: your-email@yourdomain.com\r\n";
+        $client_headers = "From: hydromafant@gmail.com \r\n"; // Replace with your email address
+        $client_headers .= "Reply-To: hydromafant@gmail.com \r\n";
         $client_headers .= "Content-Type: text/html; charset=UTF-8\r\n";
 
         // Send confirmation email to the client
