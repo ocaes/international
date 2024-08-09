@@ -104,6 +104,22 @@
         button:hover {
             background-color: #555;
         }
+        .home-section {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .home-section img {
+            max-width: 40%; /* Adjust the image width */
+            height: auto; /* Maintain aspect ratio */
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .home-section p {
+            flex: 1;
+            margin: 0;
+        }
     </style>
 </head>
 <body>
@@ -118,10 +134,13 @@
 
     <div class="content" id="home">
         <h1>Welcome to OCAES</h1>
-        <img src="ocaes.png" alt="OCAES logo" style="max-width:20%; height:50%; border-radius:8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
-        <p>Overseas Cyberspace and Environmental Services (OCAES) is an environmental consultancy offering a wide range of services.We offer a wide range of environmental services to help businesses and individuals manage their environmental impact.</p>
-        <p>OCAES is an environmental consultancy and technology business. We provide a number of services including environmental management advisory, Geographic Information System Support, Remote Sensing,Environmental Assessment solutions, Specialist studies(botanical, avifaunal etc) for your Social and Environmental Impact Assessment Studies, Soil survey, landscape architectural design and site planning, permacultural design advisory services,Web development and Geospatial Data Analysis Support as well as customized training on GIS, Remote Sensing and Geospatial Data Management with open source tools.</p>
-        
+        <div class="home-section">
+            <img src="ocaes.png" alt="OCAES logo">
+            <div>
+                <p>Overseas Cyberspace and Environmental Services (OCAES) is an environmental consultancy offering a wide range of services. We help businesses and individuals manage their environmental impact.</p>
+                <p>OCAES is an environmental consultancy and technology business. We provide a number of services including environmental management advisory, Geographic Information System Support, Remote Sensing, Environmental Assessment solutions, Specialist studies (botanical, avifaunal, etc.) for your Social and Environmental Impact Assessment Studies, Soil survey, landscape architectural design and site planning, permacultural design advisory services, Web development, and Geospatial Data Analysis Support, as well as customized training on GIS, Remote Sensing, and Geospatial Data Management with open source tools.</p>
+            </div>
+        </div>
     </div>
 
     <div class="content" id="about">
@@ -137,23 +156,23 @@
             <li><b>Ecological Surveys (Plants & Birds)</b>: We conduct surveys to identify and assess the ecological value of your site.</li>
             <li><b>GIS (Geographic Information Systems)</b>: We create maps and analyze spatial data to support environmental decision-making.</li>
             <li><b>Remote Sensing</b>: We use satellite imagery to map land cover, identify changes, and monitor environmental trends.</li>
-            <li><b><b>Training Programs</b></li>
-            <li><b><b>Soil Surveys</b></li>
+            <li><b>Training Programs</b></li>
+            <li><b>Soil Surveys</b></li>
         </ul>
     </div>
 
     <div class="content" id="contact">
         <h2>Contact Us</h2>
         <p>For inquiries, please contact us at: <a href="mailto:hydromafant@gmail.com">hydromafant@gmail.com</a></p>
-      <form action="mailto:hydromafant@gmail.com" method="post" enctype="text/plain">
-        <label for="name">Your Name:</label>
-        <input type="text" id="name" name="name" required><br><br>
-        <label for="email">Your Email:</label>
-        <input type="email" id="email" name="email" required><br><br>
-        <label for="message">Message:</label>
-        <textarea id="message" name="message" rows="5" required></textarea><br><br>
-        <input type="submit" value="Send Enquiry">
-      </form>
+        <form action="mailto:hydromafant@gmail.com" method="post" enctype="text/plain">
+            <label for="name">Your Name:</label>
+            <input type="text" id="name" name="name" required><br><br>
+            <label for="email">Your Email:</label>
+            <input type="email" id="email" name="email" required><br><br>
+            <label for="message">Message:</label>
+            <textarea id="message" name="message" rows="5" required></textarea><br><br>
+            <input type="submit" value="Send Enquiry">
+        </form>
     </div>
 
     <div class="content" id="links">
@@ -166,7 +185,7 @@
         <div class="social-media">
             <a href="https://www.facebook.com/Ocaes" target="_blank">Facebook</a>
             <a href="https://x.com/ocaes_lso" target="_blank">Twitter</a>
-            <a href="https://heylink.me/tsitsomafantiri/" target="_blank">HeyLink.me</a></p>
+            <a href="https://heylink.me/tsitsomafantiri/" target="_blank">HeyLink.me</a>
         </div>
         <div class="clock" id="clock"></div>
     </div>
@@ -185,28 +204,16 @@
             const now = new Date();
             const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
             const day = days[now.getDay()];
-            const date = now.toLocaleDateString();
-            const time = now.toLocaleTimeString();
-            clockElement.textContent = `${day}, ${date} ${time}`;
+            const time = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false });
+            clockElement.innerHTML = `${day}, ${time}`;
         }
 
-        // Update the clock every second
         setInterval(updateClock, 1000);
 
-        // Default to showing the home section
-        showSection('home');
+        document.addEventListener('DOMContentLoaded', function () {
+            showSection('home');
+            updateClock();
+        });
     </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
