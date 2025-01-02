@@ -157,15 +157,25 @@
     <div class="content" id="contact">
         <h2>Contact Us</h2>
         <p>For inquiries, please contact us at: <a href="mailto:hydromafant@gmail.com">hydromafant@gmail.com</a></p>
-    <form action="https://formspree.io/f/meooporn}" method="post">
-        <label for="name">Your Name:</label>
-        <input type="text" id="name" name="name" required><br><br>
-        <label for="email">Your Email:</label>
-        <input type="email" id="email" name="email" required><br><br>
-        <label for="message">Message:</label>
-        <textarea id="message" name="message" rows="5" required></textarea><br><br>
-        <input type="submit" value="Send Enquiry">
-    </form>
+   <form action="https://formspree.io/f/meooporn" method="POST">
+  <label for="name">Your Name:</label>
+  <input type="text" id="name" name="name" required><br><br>
+
+  <label for="email">Your Email:</label>
+  <input type="email" id="email" name="email" required><br><br>
+
+  <label for="message">Message:</label>
+  <textarea id="message" name="message" rows="5" required></textarea><br><br>
+
+  <!-- Add a hidden input for Formspree's redirect functionality -->
+  <input type="hidden" name="_redirect" value="https://yourwebsite.com/thank-you.html">
+
+  <!-- Add a honeypot field for spam protection -->
+  <input type="text" name="_gotcha" style="display:none">
+
+  <input type="submit" value="Send Enquiry">
+</form>
+
     </div>
 
     <div class="content" id="links">
