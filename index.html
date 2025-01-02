@@ -105,9 +105,10 @@
             background-color: #555;
         }
         video {
-            max-width: 50%;
-            height: 50%;
-            display: block;
+            width: 50%; /* Makes the video half the width of its container */
+            height: auto; /* Maintains the aspect ratio */
+            display: block; /* Prevents extra space around the video */
+            margin: 0 auto; /* Centers the video horizontally */
         }
     </style>
 </head>
