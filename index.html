@@ -4,277 +4,929 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Overseas Cyberspace and Environmental Services (OCAES)</title>
+    <title>OCAES — Overseas Cyberspace and Environmental Services</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --forest: #1a2e1a;
+            --moss: #2d4a2d;
+            --fern: #2e7d32;
+            --sage: #57a05b;
+            --mist: #b8cbb8;
+            --logo-blue: #1565c0;
+            --logo-green: #43a047;
+            --earth: #8b6914;
+            --amber: #e53935;
+            --sand: #f0e8d0;
+            --cream: #f5f8ff;
+            --slate: #0d1b2a;
+            --light: #f0f6f0;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
         body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #d3d3d3; /* Light gray background */
+            font-family: 'DM Sans', sans-serif;
+            background: var(--cream);
+            color: var(--forest);
+            overflow-x: hidden;
         }
-        .navbar {
-            overflow: hidden;
-            background-color: #333;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-            perspective: 1000px;
-        }
-        .navbar a {
-            float: left;
-            display: block;
-            color: #f2f2f2;
-            text-align: center;
-            padding: 14px 16px;
-            text-decoration: none;
-            transition: transform 0.3s, background-color 0.3s, color 0.3s;
-        }
-        .navbar a:hover {
-            background-color: #ddd;
-            color: black;
-            transform: translateZ(15px);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-        }
-        .content {
-            padding: 20px;
-            display: none;
-            background-color: #f4f4f4; /* White background for content */
-            margin: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        .content.active {
-            display: block;
-        }
-        h1, h2 {
-            color: #333;
-        }
-        p, ul {
-            color: #555;
-        }
-        ul {
-            list-style-type: square;
-            padding-left: 20px;
-        }
-        .footer {
-            text-align: center;
-            padding: 10px;
-            background-color: #333;
-            color: #f2f2f2;
+
+        /* ─── NAVBAR ─── */
+        nav {
             position: fixed;
-            width: 100%;
-            bottom: 0;
+            top: 0; left: 0; right: 0;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 48px;
+            height: 72px;
+            background: rgba(21, 101, 192, 0.97);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(67, 160, 71, 0.4);
         }
-        .footer .social-media a {
-            color: #f2f2f2;
-            margin: 0 3px;
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .nav-brand img {
+            height: 44px;
+            width: auto;
+            filter: drop-shadow(0 2px 6px rgba(0,0,0,0.4));
+            transition: transform 0.25s ease;
+        }
+
+        .nav-brand img:hover {
+            transform: scale(1.05);
+        }
+
+        .nav-brand-text {
+            font-family: 'DM Mono', monospace;
+            font-size: 15px;
+            color: var(--amber);
+            letter-spacing: 0.12em;
+            font-weight: 500;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 4px;
+        }
+
+        .nav-links a {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--mist);
             text-decoration: none;
-            transition: color 0.3s;
-        }
-        .footer .social-media a:hover {
-            color: #ddd;
-        }
-        .clock {
-            margin-top: 8px;
-            text-align: center;
-            font-size: 12px;
-            font-family: Arial, sans-serif;
-        }
-        form {
-            max-width: 600px;
-            margin: 0 auto;
-            background: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        input, textarea {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
+            padding: 8px 18px;
             border-radius: 4px;
-        }
-        button {
-            background-color: #333;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 4px;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            transition: all 0.25s ease;
             cursor: pointer;
         }
-        button:hover {
-            background-color: #555;
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            background: rgba(107, 143, 113, 0.25);
+            color: var(--sand);
         }
-        video {
-            width: 15%; /* Makes 20% the width of its container */
-            height: auto; /* Maintains the aspect ratio */
-            display: block; /* Prevents extra space around the video */
-            margin: 0 auto; /* Centers the video horizontally */
+
+        /* ─── SECTIONS ─── */
+        .section {
+            display: none;
+            min-height: 100vh;
+            padding: 120px 0 120px;
+            animation: fadeUp 0.5s ease both;
+        }
+
+        .section.active { display: block; }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(24px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 48px;
+        }
+
+        /* ─── HOME ─── */
+        #home {
+            background:
+                radial-gradient(ellipse 80% 60% at 70% 40%, rgba(61, 107, 61, 0.12) 0%, transparent 60%),
+                var(--cream);
+            padding-top: 140px;
+        }
+
+        .home-eyebrow {
+            font-family: 'DM Mono', monospace;
+            font-size: 12px;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--sage);
+            margin-bottom: 20px;
+        }
+
+        .home-headline {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(42px, 6vw, 80px);
+            font-weight: 900;
+            line-height: 1.05;
+            color: var(--forest);
+            margin-bottom: 28px;
+        }
+
+        .home-headline .accent {
+            color: var(--fern);
+            font-style: italic;
+        }
+
+        .home-sub {
+            font-size: 17px;
+            line-height: 1.75;
+            color: #4a6050;
+            max-width: 560px;
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            background: var(--logo-blue);
+            color: var(--sand);
+            padding: 14px 32px;
+            border-radius: 4px;
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+            transition: all 0.25s ease;
+        }
+
+        .btn-primary:hover {
+            background: var(--logo-green);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(67, 160, 71, 0.3);
+        }
+
+        .home-stats {
+            display: flex;
+            gap: 48px;
+            margin-top: 64px;
+            padding-top: 40px;
+            border-top: 1px solid rgba(107, 143, 113, 0.3);
+        }
+
+        .stat-item .stat-num {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--logo-blue);
+        }
+
+        .stat-item .stat-label {
+            font-size: 12px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--sage);
+            margin-top: 4px;
+        }
+
+        /* ─── SECTION HEADERS ─── */
+        .section-tag {
+            font-family: 'DM Mono', monospace;
+            font-size: 11px;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--logo-blue);
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(32px, 4vw, 52px);
+            font-weight: 700;
+            line-height: 1.15;
+            color: var(--forest);
+            margin-bottom: 20px;
+        }
+
+        .section-desc {
+            font-size: 16px;
+            line-height: 1.8;
+            color: #4a6050;
+            font-weight: 300;
+            max-width: 640px;
+            margin-bottom: 48px;
+        }
+
+        /* ─── ABOUT ─── */
+        #about { background: var(--light); }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: start;
+        }
+
+        .about-quote {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            font-style: italic;
+            color: var(--fern);
+            line-height: 1.6;
+            padding: 28px 0 28px 28px;
+            border-left: 3px solid var(--logo-green);
+            margin: 32px 0;
+        }
+
+        .about-tagline {
+            font-family: 'DM Mono', monospace;
+            font-size: 13px;
+            letter-spacing: 0.1em;
+            color: var(--sage);
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+
+        .about-body {
+            font-size: 15px;
+            line-height: 1.9;
+            color: #3a5040;
+            font-weight: 300;
+        }
+
+        .about-right {
+            padding-top: 12px;
+        }
+
+        .value-card {
+            background: white;
+            border: 1px solid rgba(107, 143, 113, 0.2);
+            border-radius: 8px;
+            padding: 24px;
+            margin-bottom: 16px;
+            transition: all 0.25s ease;
+        }
+
+        .value-card:hover {
+            border-color: var(--sage);
+            transform: translateX(6px);
+            box-shadow: 0 4px 16px rgba(45, 74, 45, 0.08);
+        }
+
+        .value-card h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 16px;
+            color: var(--forest);
+            margin-bottom: 6px;
+        }
+
+        .value-card p {
+            font-size: 13px;
+            color: var(--sage);
+            line-height: 1.6;
+        }
+
+        /* ─── SERVICES ─── */
+        #services { background: var(--logo-blue); }
+
+        #services .section-tag { color: #ffeb3b; }
+        #services .section-title { color: var(--sand); }
+        #services .section-desc { color: var(--mist); }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+            background: rgba(67, 160, 71, 0.2);
+            border: 1px solid rgba(67, 160, 71, 0.2);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .service-tile {
+            background: rgba(21, 101, 192, 0.5);
+            padding: 32px 28px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-tile::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--amber), transparent);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .service-tile:hover {
+            background: rgba(67, 160, 71, 0.4);
+        }
+
+        .service-tile:hover::before { opacity: 1; }
+
+        .service-icon {
+            font-size: 28px;
+            margin-bottom: 16px;
+        }
+
+        .service-tile h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 17px;
+            color: var(--sand);
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .service-tile p {
+            font-size: 13px;
+            color: var(--mist);
+            line-height: 1.7;
+            font-weight: 300;
+        }
+
+        /* ─── CONTACT ─── */
+        #contact { background: var(--cream); }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 80px;
+            align-items: start;
+        }
+
+        .contact-info h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            color: var(--forest);
+            margin-bottom: 16px;
+        }
+
+        .contact-info p {
+            font-size: 14px;
+            color: var(--sage);
+            line-height: 1.8;
+            margin-bottom: 28px;
+        }
+
+        .contact-detail {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+            font-size: 14px;
+            color: #4a6050;
+        }
+
+        .contact-detail .icon {
+            width: 36px; height: 36px;
+            background: rgba(61, 107, 61, 0.1);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+
+        .contact-form {
+            background: white;
+            border: 1px solid rgba(107, 143, 113, 0.2);
+            border-radius: 12px;
+            padding: 40px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--sage);
+            margin-bottom: 8px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid rgba(107, 143, 113, 0.3);
+            border-radius: 6px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 14px;
+            color: var(--forest);
+            background: var(--light);
+            transition: border-color 0.2s, box-shadow 0.2s;
+            outline: none;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--fern);
+            box-shadow: 0 0 0 3px rgba(61, 107, 61, 0.1);
+        }
+
+        .form-group textarea { resize: vertical; min-height: 120px; }
+
+        .form-submit {
+            width: 100%;
+            background: var(--logo-blue);
+            color: var(--sand);
+            padding: 14px;
+            border: none;
+            border-radius: 6px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .form-submit:hover {
+            background: var(--logo-green);
+            box-shadow: 0 6px 20px rgba(67, 160, 71, 0.25);
+        }
+
+        /* ─── LINKS ─── */
+        #links { background: var(--light); }
+
+        .links-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .links-block h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            color: var(--forest);
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(107, 143, 113, 0.25);
+        }
+
+        .link-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(107, 143, 113, 0.1);
+        }
+
+        .link-item a {
+            font-size: 14px;
+            color: var(--fern);
+            text-decoration: none;
+            font-weight: 400;
+            transition: color 0.2s;
+        }
+
+        .link-item a:hover { color: var(--earth); }
+
+        .link-item::before {
+            content: '→';
+            font-size: 12px;
+            color: var(--amber);
+            font-family: 'DM Mono', monospace;
+        }
+
+        .social-row {
+            display: flex;
+            gap: 12px;
+            margin-top: 16px;
+        }
+
+        .social-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            background: var(--logo-blue);
+            color: white;
+            border-radius: 100px;
+            font-size: 12px;
+            font-weight: 500;
+            text-decoration: none;
+            letter-spacing: 0.05em;
+            transition: all 0.2s ease;
+        }
+
+        .social-pill:hover {
+            background: var(--logo-green);
+            transform: translateY(-2px);
+        }
+
+        .download-cta {
+            background: var(--logo-blue);
+            border-radius: 12px;
+            padding: 32px;
+            margin-top: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+        }
+
+        .download-cta h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 20px;
+            color: var(--sand);
+            margin-bottom: 6px;
+        }
+
+        .download-cta p {
+            font-size: 13px;
+            color: var(--mist);
+        }
+
+        .btn-amber {
+            display: inline-block;
+            background: var(--amber);
+            color: var(--forest);
+            padding: 12px 28px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            text-decoration: none;
+            white-space: nowrap;
+            transition: all 0.2s ease;
+        }
+
+        .btn-amber:hover {
+            background: #e8b520;
+            transform: translateY(-2px);
+        }
+
+        /* ─── FOOTER ─── */
+        footer {
+            background: #0a1628;
+            color: var(--mist);
+            padding: 32px 48px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .footer-brand {
+            font-family: 'DM Mono', monospace;
+            font-size: 12px;
+            color: var(--sage);
+            letter-spacing: 0.08em;
+        }
+
+        .footer-clock {
+            font-family: 'DM Mono', monospace;
+            font-size: 11px;
+            color: var(--sage);
+            letter-spacing: 0.06em;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 20px;
+        }
+
+        .footer-social a {
+            font-size: 12px;
+            color: var(--sage);
+            text-decoration: none;
+            letter-spacing: 0.06em;
+            transition: color 0.2s;
+        }
+
+        .footer-social a:hover { color: var(--sand); }
+
+        /* ─── DECORATIVE ─── */
+        .geo-accent {
+            position: absolute;
+            right: -60px;
+            top: 100px;
+            width: 320px;
+            height: 320px;
+            border: 1px solid rgba(61, 107, 61, 0.15);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .geo-accent::after {
+            content: '';
+            position: absolute;
+            top: 40px; left: 40px; right: 40px; bottom: 40px;
+            border: 1px solid rgba(61, 107, 61, 0.1);
+            border-radius: 50%;
+        }
+
+        #home .container { position: relative; overflow: visible; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav { padding: 0 24px; }
+            .container { padding: 0 24px; }
+            .about-grid, .contact-grid, .links-grid { grid-template-columns: 1fr; gap: 40px; }
+            .services-grid { grid-template-columns: 1fr; }
+            .home-stats { flex-wrap: wrap; gap: 24px; }
+            .download-cta { flex-direction: column; align-items: flex-start; }
+            footer { flex-direction: column; align-items: flex-start; }
         }
     </style>
 </head>
 <body>
 
-    <div class="navbar">
-        <a href="" onclick="showSection('home')">Home</a>
-        <a href="#about" onclick="showSection('about')">About</a>
-        <a href="#services" onclick="showSection('services')">Services</a>
-        <a href="#contact" onclick="showSection('contact')">Contact</a>
-        <a href="#links" onclick="showSection('links')">Links</a>
-    </div>
+    <nav>
+        <div class="nav-brand">
+            <img src="ocaes.png" alt="OCAES Logo">
+            <span class="nav-brand-text">OCAES</span>
+        </div>
+        <div class="nav-links">
+            <a onclick="showSection('home')" id="nav-home" class="active">Home</a>
+            <a onclick="showSection('about')" id="nav-about">About</a>
+            <a onclick="showSection('services')" id="nav-services">Services</a>
+            <a onclick="showSection('contact')" id="nav-contact">Contact</a>
+            <a onclick="showSection('links')" id="nav-links">Links</a>
+        </div>
+    </nav>
 
-    <div class="content" id="home">
-        <h1>Welcome to OCAES:Your EnviroTech</h1>
-        <img src="ocaes.jpg" alt="OCAES logo" style="max-width:24%; height:24%; border-radius:12px; box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);">
-        <video controls>
-        <!-- Video file -->
-        <source src="Vid1.mp4" type="video/mp4">
-        <!-- Fallback -->
-        Your browser does not support the video tag.
-        </video>
+    <!-- HOME -->
+    <section class="section active" id="home">
+        <div class="container">
+            <div class="geo-accent"></div>
+            <div style="display:flex; align-items:center; gap:20px; margin-bottom: 28px;">
+                <img src="ocaes.png" alt="OCAES Logo" style="height:90px; width:auto; filter: drop-shadow(0 4px 12px rgba(45,74,45,0.25));">
+                <p class="home-eyebrow" style="margin-bottom:0;">EnviroTech · Lesotho &amp; Beyond</p>
+            </div>
+            <h1 class="home-headline">
+                Your <span class="accent">EnviroTech</span><br>Partner
+            </h1>
+            <p class="home-sub">
+                OCAES bridges the gap between nature and technology — delivering environmental consultancy, geospatial intelligence, and digital solutions for a sustainable world.
+            </p>
+            <button class="btn-primary" onclick="showSection('services')">Explore Services</button>
 
-        <video controls>
-        <!-- Video file -->
-        <source src="Vid2.mp4" type="video/mp4">
-        <!-- Fallback -->
-        Your browser does not support the video tag.
-        </video>
+            <div class="home-stats">
+                <div class="stat-item">
+                    <div class="stat-num">9+</div>
+                    <div class="stat-label">Service Areas</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-num">GIS</div>
+                    <div class="stat-label">Geospatial Expertise</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-num">AI</div>
+                    <div class="stat-label">Machine Learning Tools</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-num">360°</div>
+                    <div class="stat-label">Environmental Coverage</div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        <p>OCAES provides environmental management advice,Geographic Information System Support,Remote Sensing,Environmental Assessment solutions(botanical,avifaunal specialist studies),Soil survey,permacultural design advice,Web development and Geospatial Data Analysis Support as well as customized training on GIS,Remote Sensing and Geospatial Data Management.</p>
-        
-    </div>
+    <!-- ABOUT -->
+    <section class="section" id="about">
+        <div class="container">
+            <p class="section-tag">Who We Are</p>
+            <div class="about-grid">
+                <div class="about-left">
+                    <h2 class="section-title">Bridging Nature<br>&amp; Technology</h2>
+                    <p class="about-tagline">Your Satisfaction, Our Cup of Tea</p>
+                    <p class="about-body">
+                        Overseas Cyberspace and Environmental Services (OCAES) is an EnviroTech specializing in high-quality environmental consultancy. Our mission is to support sustainable development through comprehensive environmental assessments and innovative solutions.
+                    </p>
+                    <blockquote class="about-quote">
+                        "We offer a unique blend of environmental expertise and cutting-edge technology to provide tailored solutions for businesses and individuals."
+                    </blockquote>
+                    <p class="about-body">
+                        From ecological field surveys to satellite image analysis and AI-powered environmental monitoring, OCAES delivers end-to-end solutions for those seeking to minimize environmental impact and maximize sustainability goals.
+                    </p>
+                </div>
+                <div class="about-right">
+                    <div class="value-card">
+                        <h4>🌿 Environmental Integrity</h4>
+                        <p>Every assessment is grounded in scientific rigour and a genuine commitment to protecting natural ecosystems.</p>
+                    </div>
+                    <div class="value-card">
+                        <h4>🛰️ Technology-Driven Insight</h4>
+                        <p>We harness satellite imagery, GIS, machine learning, and remote sensing to deliver data that makes a difference.</p>
+                    </div>
+                    <div class="value-card">
+                        <h4>🎓 Knowledge Transfer</h4>
+                        <p>Customized training programs ensure our clients and communities build lasting in-house capability.</p>
+                    </div>
+                    <div class="value-card">
+                        <h4>🌍 Local Roots, Global Reach</h4>
+                        <p>Based in Lesotho, OCAES operates across the region with a growing portfolio of international tools and apps.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <div class="content" id="about">
-        <h2>About Us</h2>
-        <p style="text-transform: uppercase;">Your Satisfaction Our Cup of Tea.</p>
-        <p><i>Bridging the Gap Between Nature and Technology</i></p>
-        <p>Overseas Cyberspace and Environmental Services (OCAES) is an EnviroTech that specializes in providing high-quality environmental consultancy services. Our mission is to support sustainable development through comprehensive environmental assessments and innovative solutions.OCAES offers a unique blend of environmental expertise and cutting-edge technology to provide tailored solutions for businesses and individuals seeking to minimize their environmental impact and maximize their sustainability goals.</p>
+    <!-- SERVICES -->
+    <section class="section" id="services">
+        <div class="container">
+            <p class="section-tag">What We Do</p>
+            <h2 class="section-title">Our Services</h2>
+            <p class="section-desc">A comprehensive suite of environmental and digital services, from field surveys to AI-powered analysis.</p>
+            <div class="services-grid">
+                <div class="service-tile">
+                    <div class="service-icon">📋</div>
+                    <h3>SEIA</h3>
+                    <p>Strategic, Social &amp; Environmental Impact Assessments — helping you navigate approvals and develop robust mitigation strategies.</p>
+                </div>
+                <div class="service-tile">
+                    <div class="service-icon">🗺️</div>
+                    <h3>Geospatial Data Analytics</h3>
+                    <p>Advanced GIS and remote sensing techniques to analyze environmental data and surface actionable insights.</p>
+                </div>
+                <div class="service-tile">
+                    <div class="service-icon">🦅</div>
+                    <h3>Ecological Surveys</h3>
+                    <p>Botanical and avifaunal specialist studies to identify and assess the ecological value of your site.</p>
+                </div>
+                <div class="service-tile">
+                    <div class="service-icon">🌐</div>
+                    <h3>GIS &amp; Remote Sensing</h3>
+                    <p>Custom maps, spatial analysis, land cover mapping, and change detection using satellite imagery.</p>
+                </div>
+                <div class="service-tile">
+                    <div class="service-icon">🤖</div>
+                    <h3>AI &amp; Machine Learning</h3>
+                    <p>Deep learning and AI support services for environmental monitoring, classification, and prediction tasks.</p>
+                </div>
+                <div class="service-tile">
+                    <div class="service-icon">💻</div>
+                    <h3>Web &amp; App Development</h3>
+                    <p>Custom web and mobile applications — from environmental dashboards to public-facing data tools.</p>
+                </div>
+                <div class="service-tile">
+                    <div class="service-icon">🌱</div>
+                    <h3>Soil &amp; Water Surveys</h3>
+                    <p>Field-based surveys for soil characterization, water quality assessment, and permacultural design advice.</p>
+                </div>
+                <div class="service-tile">
+                    <div class="service-icon">🎓</div>
+                    <h3>Customized Training</h3>
+                    <p>Hands-on programs in GIS, Remote Sensing, and Geospatial Data Management — tailored to your team's needs. <a href="https://alison.com/certificate-courses?utm_source=alison_user&utm_medium=affiliates&utm_campaign=16455431" target="_blank" style="color: var(--amber);">Also learn online →</a></p>
+                </div>
+                <div class="service-tile">
+                    <div class="service-icon">🔬</div>
+                    <h3>Environmental Monitoring</h3>
+                    <p>Ongoing monitoring programmes for emissions, vegetation change, fire risk, and biodiversity trends.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
+    <!-- CONTACT -->
+    <section class="section" id="contact">
+        <div class="container">
+            <p class="section-tag">Get In Touch</p>
+            <h2 class="section-title">Contact Us</h2>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h3>We'd love to hear from you</h3>
+                    <p>Whether you have a project inquiry, need a quote, or want to learn more about our services — reach out and we'll respond promptly.</p>
+                    <div class="contact-detail">
+                        <div class="icon">✉️</div>
+                        <a href="mailto:hydromafant@gmail.com" style="color: var(--fern); text-decoration: none;">hydromafant@gmail.com</a>
+                    </div>
+                    <div class="contact-detail">
+                        <div class="icon">🌐</div>
+                        <a href="http://www.ocaes.weebly.com" target="_blank" style="color: var(--fern); text-decoration: none;">www.ocaes.weebly.com</a>
+                    </div>
+                    <div class="contact-detail">
+                        <div class="icon">📍</div>
+                        <span>Maseru, Lesotho</span>
+                    </div>
+                    <div class="social-row" style="margin-top: 28px;">
+                        <a href="https://www.facebook.com/Ocaes" target="_blank" class="social-pill">Facebook</a>
+                        <a href="https://x.com/ocaes_lso" target="_blank" class="social-pill">X / Twitter</a>
+                        <a href="https://heylink.me/tsitsomafantiri/" target="_blank" class="social-pill">HeyLink</a>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form action="https://formspree.io/f/meooporn" method="POST">
+                        <input type="text" name="_gotcha" style="display:none">
+                        <input type="hidden" name="_redirect" value="https://yourwebsite.com/thank-you.html">
+                        <div class="form-group">
+                            <label for="name">Your Name</label>
+                            <input type="text" id="name" name="name" placeholder="Full name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" placeholder="your@email.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" placeholder="Tell us about your project or inquiry…" required></textarea>
+                        </div>
+                        <button type="submit" class="form-submit">Send Enquiry</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        <video controls>
-        <!-- Video file -->
-        <source src="Ainara_-_Shirt.mp4" type="video/mp4">
-        <!-- Fallback -->
-        Your browser does not support the video tag.
-        </video>
-    </div>
-        
-    <div class="content" id="services">
-        <h2>Our Services</h2>
-        <ul>
-            <li><b>SEIA (Strategic/Social and Environmental Impact Assessment)</b>: We can help you assess the environmental impacts of your projects and develop mitigation strategies.</li>
-            <li><b>Geospatial Data Analytics</b>: We use advanced GIS and remote sensing techniques to analyze environmental data and provide insights.</li>
-            <li><b>Ecological Surveys (Plants & Birds)</b>: We conduct surveys to identify and assess the ecological value of your site.</li>
-            <li><b>GIS (Geographic Information Systems)</b>: We create maps and analyze spatial data to support environmental decision-making.</li>
-            <li><b>Remote Sensing</b>: We use satellite imagery to map land cover, identify changes, and monitor environmental trends.</li>
-            <li><b>Customized Training Programs.You can also follow this link to learn <a href="https://alison.com/certificate-courses?utm_source=alison_user&utm_medium=affiliates&utm_campaign=16455431" target="_blank">here</a></b></li>
-            <li><b>Web and Mobile App Development</b></li>
-            <li><b>Machine Learning, Deep Learning and Artificial Intelligence support services</b></li>
-            <li><b>Soil and Water Surveys</b></li>
-        </ul>
-         <img src="Bird.png" alt="Avifaunal Survey" style="max-width:20%; height:20%; border-radius:8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
-        <img src="Experts analysing SatImg.jpg" alt="Analysing Satellite Image" style="max-width:20%; height:20%; border-radius:8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
-        <img src="Soil Survey.jpeg" alt="Soil Survey" style="max-width:20%; height:20%; border-radius:8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
-        <img src="Vegetation survey.png" alt="Vegetation Survey" style="max-width:20%; height:20%; border-radius:8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
-        <img src="Bird.png" alt="Avifaunal Survey" style="max-width:20%; height:20%; border-radius:8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
-        
-        
-    </div>
+    <!-- LINKS -->
+    <section class="section" id="links">
+        <div class="container">
+            <p class="section-tag">Resources</p>
+            <h2 class="section-title">Links &amp; Apps</h2>
+            <div class="links-grid">
+                <div class="links-block">
+                    <h3>Our Applications</h3>
+                    <div class="link-item"><a href="https://tsmafantiri.shinyapps.io/LsoAvifaunaApp/" target="_blank">Lesotho Birds App</a></div>
+                    <div class="link-item"><a href="https://tsmafantiri.shinyapps.io/LSOEnviroApp/" target="_blank">Lesotho Environment App</a></div>
+                    <div class="link-item"><a href="https://tsmafantiri.shinyapps.io/SoilWebAppLSO/" target="_blank">Soil-Vegetation App</a></div>
+                    <div class="link-item"><a href="https://nifty-vault-332121.projects.earthengine.app/view/lesotho-emmissions-monitoring-app" target="_blank">Lesotho Emissions Monitoring</a></div>
+                    <div class="link-item"><a href="https://africageoportal.maps.arcgis.com/apps/instant/charts/index.html?appid=b5348bb23f83414ca6cb74533df828c6" target="_blank">Lesotho Fire App</a></div>
+                    <div class="link-item"><a href="https://ocaes.github.io/Weather-App/" target="_blank">Weather App</a></div>
+                    <div class="link-item"><a href="https://huggingface.co/spaces/tmafantiri/braintumourdetector" target="_blank">Brain Tumour Detection AI</a></div>
+                    <div class="link-item"><a href="https://tmafantiri-image2drawing.hf.space/" target="_blank">Image To Drawing App</a></div>
+                    <div class="link-item"><a href="https://ocaes.github.io/Papali/" target="_blank">HTML Obstacle Avoidance Game</a></div>
+                    <div class="link-item"><a href="https://ocaes.github.io/The-Lament-Of-Maluti/" target="_blank">Environmental Music</a></div>
+                </div>
+                <div class="links-block">
+                    <h3>Social &amp; Web</h3>
+                    <div class="link-item"><a href="http://www.ocaes.weebly.com" target="_blank">OCAES Website (Weebly)</a></div>
+                    <div class="link-item"><a href="https://tsitsomafantiri.blogspot.com/" target="_blank">Technology &amp; Environment Blog</a></div>
+                    <div class="link-item"><a href="https://www.facebook.com/Ocaes" target="_blank">Facebook</a></div>
+                    <div class="link-item"><a href="https://x.com/ocaes_lso" target="_blank">X / Twitter</a></div>
+                    <div class="link-item"><a href="https://heylink.me/tsitsomafantiri/" target="_blank">HeyLink.me</a></div>
 
-    <div class="content" id="contact">
-        <h2>Contact Us</h2>
-        <p>For inquiries, please contact us at: <a href="mailto:hydromafant@gmail.com">hydromafant@gmail.com</a></p>
-    <form action="https://formspree.io/f/meooporn" method="POST">
-        <label for="name">Your Name:</label>
-        <input type="text" id="name" name="name" required><br><br>
+                    <div style="margin-top: 32px;">
+                        <h3>Download App</h3>
+                        <div class="download-cta">
+                            <div>
+                                <h3>OCAES Mobile App</h3>
+                                <p>Available as an APK for Android devices.</p>
+                            </div>
+                            <div style="display: flex; flex-direction: column; gap: 10px;">
+                                <a href="app-debug.apk" download class="btn-amber">Download APK</a>
+                                <a href="https://apkpure.net/p/com.example.ocaeswebapp" target="_blank" class="btn-amber" style="text-align: center;">APKPure</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        <label for="email">Your Email:</label>
-        <input type="email" id="email" name="email" required><br><br>
-
-        <label for="message">Message:</label>
-        <textarea id="message" name="message" rows="5" required></textarea><br><br>
-
-        <!-- Add a hidden input for Formspree's redirect functionality -->
-        <input type="hidden" name="_redirect" value="https://yourwebsite.com/thank-you.html">
-
-        <!-- Add a honeypot field for spam protection -->
-        <input type="text" name="_gotcha" style="display:none">
-
-        <input type="submit" value="Send Enquiry">
-    </form>
-
-    </div>
-
-    <div class="content" id="links">
-        <h2>Useful Links</h2>
-        <p>Visit our alternative website: <a href="http://www.ocaes.weebly.com" target="_blank">www.ocaes.weebly.com</a></p>
-        <p>Click below to access our social media platforms</p>
-        <ul>
-            <li><a href="https://www.facebook.com/Ocaes" target="_blank">Facebook</a></li>
-            <li><a href="https://x.com/ocaes_lso" target="_blank">X</a></li>
-            <li><a href="https://heylink.me/tsitsomafantiri/" target="_blank">HeyLink.me</a></li>
-        </ul>
-
-        <h2>Download OCAES App</h2>
-        <p>Click the button below to download the APK file.</p>
-        <a href="app-debug.apk" download>
-        <button style="padding: 10px 20px; font-size: 16px; cursor: pointer;">Download OCAES Mobile App</button>
-        </a>
-        <p>Alternatively download OCAES Mobile App <a href=" https://apkpure.net/p/com.example.ocaeswebapp" target="_blank">here</a></p>
-        
-        <h2>Click below to view some of our works including apps</h2>
-        <ul>
-            <li><a href="https://tsitsomafantiri.blogspot.com/" target="_blank">Technology and Environment Blog Site</a></li>
-            <li><a href="https://ocaes.github.io/Papali/" target="_blank">HTML Game For Ostacle Avoidance</a></li>
-            <li><a href="https://tsmafantiri.shinyapps.io/LsoAvifaunaApp/" target="_blank">Birds App</a></li>
-            <li><a href="https://tsmafantiri.shinyapps.io/LSOEnviroApp/" target="_blank">Environment App</a></li>
-            <li><a href="https://tsmafantiri.shinyapps.io/SoilWebAppLSO/" target="_blank">Soil-Vegetation App</a></li>
-            <li><a href="https://tmafantiri-image2drawing.hf.space/" target="_blank">Image To Drawing App</a></li>
-            <li><a href="https://ocaes.github.io/Weather-App/" target="_blank">Weather App</a></li>
-            <li><a href="https://huggingface.co/spaces/tmafantiri/braintumourdetector" target="_blank">Brain Tumour Detection AI App</a></li>
-            <li><a href="https://nifty-vault-332121.projects.earthengine.app/view/lesotho-emmissions-monitoring-app" target="_blank">Lesotho Emmissions Monitoring App</a></li>
-            <li><a href="https://africageoportal.maps.arcgis.com/apps/instant/charts/index.html?appid=b5348bb23f83414ca6cb74533df828c6" target="_blank">Lesotho Fire App</a></li> 
-            <li><a href="https://ocaes.github.io/The-Lament-Of-Maluti/" target="_blank">Environmental Music</a></p></li>
-        </ul>
-    </div>
-
-    <div class="footer">
-        &copy; 2026 Overseas Cyberspace and Environmental Services (OCAES). All rights reserved.
-        <div class="social-media">
+    <footer>
+        <div class="footer-brand">© 2026 Overseas Cyberspace and Environmental Services (OCAES)</div>
+        <div class="footer-clock" id="clock"></div>
+        <div class="footer-social">
             <a href="https://www.facebook.com/Ocaes" target="_blank">Facebook</a>
             <a href="https://x.com/ocaes_lso" target="_blank">X</a>
-            <a href="https://heylink.me/tsitsomafantiri/" target="_blank">HeyLink.me</a></p>
+            <a href="https://heylink.me/tsitsomafantiri/" target="_blank">HeyLink.me</a>
         </div>
-        <div class="clock" id="clock"></div>
-        
-    </div>
+    </footer>
 
     <script>
-        function showSection(sectionId) {
-            const sections = document.querySelectorAll('.content');
-            sections.forEach(section => {
-                section.classList.remove('active');
-            });
-            document.getElementById(sectionId).classList.add('active');
+        function showSection(id) {
+            document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+            document.getElementById('nav-' + id).classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
         function updateClock() {
-            const clockElement = document.getElementById('clock');
+            const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
             const now = new Date();
-            const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-            const day = days[now.getDay()];
-            const date = now.toLocaleDateString();
-            const time = now.toLocaleTimeString();
-            clockElement.textContent = `${day}, ${date} ${time}`;
+            document.getElementById('clock').textContent =
+                `${days[now.getDay()]}  ${now.toLocaleDateString()}  ${now.toLocaleTimeString()}`;
         }
-
-        // Update the clock every second
         setInterval(updateClock, 1000);
-
-        // Default to showing the home section
-        showSection('home');
+        updateClock();
     </script>
 </body>
 </html>
