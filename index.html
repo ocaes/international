@@ -29,7 +29,6 @@
             font-family: 'DM Sans', sans-serif;
             background: var(--cream);
             color: var(--forest);
-            overflow-x: hidden;
         }
 
         /* ─── NAVBAR ─── */
@@ -512,17 +511,19 @@
             font-family: 'DM Mono', monospace;
         }
 
+        /* ── 2x2 grid so all 4 pills always show ── */
         .social-row {
-            display: flex;
-            gap: 12px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
             margin-top: 16px;
         }
 
         .social-pill {
-            display: inline-flex;
+            display: flex;
             align-items: center;
-            gap: 6px;
-            padding: 8px 16px;
+            justify-content: center;
+            padding: 9px 12px;
             background: var(--logo-blue);
             color: white;
             border-radius: 100px;
@@ -531,6 +532,7 @@
             text-decoration: none;
             letter-spacing: 0.05em;
             transition: all 0.2s ease;
+            text-align: center;
         }
 
         .social-pill:hover {
@@ -826,11 +828,21 @@
                         <div class="icon">📍</div>
                         <span>Maseru, Lesotho</span>
                     </div>
-                    <div class="social-row" style="margin-top: 25px;">
-                        <a href="https://www.facebook.com/Ocaes" target="_blank" class="social-pill">Facebook</a>
-                        <a href="https://x.com/ocaes_lso" target="_blank" class="social-pill">X / Twitter</a>
-                        <a href="https://heylink.me/tsitsomafantiri/" target="_blank" class="social-pill">HeyLink</a>
-                        <a href="https://lesbook.net/#user/mopheme" target="_blank" class="social-pill">LesBook</a>
+                    <div class="contact-detail">
+                        <div class="icon">📘</div>
+                        <a href="https://lesbook.net/#user/mopheme" target="_blank" style="color: var(--fern); text-decoration: none;">LesBook</a>
+                    </div>
+                    <div class="contact-detail">
+                        <div class="icon">👥</div>
+                        <a href="https://www.facebook.com/Ocaes" target="_blank" style="color: var(--fern); text-decoration: none;">Facebook</a>
+                    </div>
+                    <div class="contact-detail">
+                        <div class="icon">🐦</div>
+                        <a href="https://x.com/ocaes_lso" target="_blank" style="color: var(--fern); text-decoration: none;">X / Twitter</a>
+                    </div>
+                    <div class="contact-detail">
+                        <div class="icon">🔗</div>
+                        <a href="https://heylink.me/tsitsomafantiri/" target="_blank" style="color: var(--fern); text-decoration: none;">HeyLink</a>
                     </div>
                 </div>
                 <div class="contact-form">
@@ -851,6 +863,17 @@
                         </div>
                         <button type="submit" class="form-submit">Send Enquiry</button>
                     </form>
+                </div>
+            </div>
+
+            <!-- Social links full-width below the grid -->
+            <div style="margin-top: 36px;">
+                <p style="font-family:'DM Mono',monospace; font-size:11px; letter-spacing:0.15em; text-transform:uppercase; color:var(--sage); margin-bottom:14px;">Find Us Online</p>
+                <div style="display:flex; flex-wrap:wrap; gap:12px;">
+                    <a href="https://www.facebook.com/Ocaes" target="_blank" class="social-pill">Facebook</a>
+                    <a href="https://x.com/ocaes_lso" target="_blank" class="social-pill">X / Twitter</a>
+                    <a href="https://heylink.me/tsitsomafantiri/" target="_blank" class="social-pill">HeyLink</a>
+                    <a href="https://lesbook.net/#user/mopheme" target="_blank" class="social-pill">LesBook</a>
                 </div>
             </div>
         </div>
